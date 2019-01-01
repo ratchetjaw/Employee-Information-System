@@ -1163,6 +1163,7 @@ or die ('Cannot connect to db');
 
 <button type="button"   onclick="rpthourly()" tabindex="18" id="rptbtn1" >Show Hourly Positions</button><br>
 <button type="button"   onclick="erhourly()" tabindex="19" id="rptbtn2" >Employee Roster-Hourly Positions</button><br>
+<button type="button"   onclick="empdep()" tabindex="20" id="rptbtn3" >Employee Dependents</button><br>
   <br> 
   
     <label for="dbtable">Select Table To View Columns:</label><br>
@@ -1647,7 +1648,7 @@ function deprecordadd() {
 	var item = document.getElementById("drel");
 	var rel = item.options[item.selectedIndex].text;
 	// Returns successful data submission message when the entered information is stored in database.
-	var dataString = 'depid=' + depid + '&empid=' + empid + '&dfname=' + dfname + '&dlname=' + dlname + '&dob=' + dob + '&ssno=' + ssn + 
+	var dataString = 'empid=' + empid + '&dfname=' + dfname + '&dlname=' + dlname + '&dob=' + dob + '&ssno=' + ssn + 
 		'&rel=' + rel + '&fname=' + fname + '&lname=' + lname;
 	var program = 'eisdepadd.php';
 	phpajax(dataString, program);
@@ -1836,6 +1837,15 @@ function erhourly() {
 	"FROM emp_data a, job_data b, jobs d, departments e " +
 "WHERE a.employee_id = b.employee_id AND b.job_id = d.job_id AND b.department_id = e.department_id AND d.rate_flag = 'hourly' AND b.eff_date = (SELECT MAX(eff_date) FROM job_data c" +
             " WHERE c.employee_id = b.employee_id);";
+	document.getElementById("rptsql").value = select;
+}
+
+function empdep() {
+	var select = "SELECT a.first_name AS 'EMPLOYEE FIRST NAME', a.last_name AS 'EMPLOYEE LAST NAME', b.first_name AS 'DEPENDENT FIRST NAME', b.last_name AS 'DEPENDENT LAST NAME', " +
+	" b.dep_dob AS 'DEPENDENT DATE OF BIRTH' " + 
+	"FROM emp_data a, dependents b " +
+	"WHERE b.employee_id = a.employee_id AND a.employee_id = (SELECT employee_id FROM emp_data a " +
+            " WHERE a.last_name = 'King');";
 	document.getElementById("rptsql").value = select;
 }
 
