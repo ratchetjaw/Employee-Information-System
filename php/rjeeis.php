@@ -1159,16 +1159,13 @@ or die ('Cannot connect to db');
 <button type="button"   onclick="closerolodex()" tabindex="2" disabled id="rptbtn00" >Close Rolodex</button><br>
 <div id="custom">
   <h3>Custom Reports</h3>
-<form id="rptform" name="rptform">
+  
+<!--<form id="rptform" name="rptform" target="/" action="eisrpthub.php" method="post">-->
 
-<button type="button"   onclick="rpthourly()" tabindex="18" id="rptbtn1" >Show Hourly Positions</button><br>
-<button type="button"   onclick="erhourly()" tabindex="19" id="rptbtn2" >Employee Roster-Hourly Positions</button><br>
-<button type="button"   onclick="empdep()" tabindex="20" id="rptbtn3" >Employee Dependents</button><br>
-  <br> 
   
     <label for="dbtable">Select Table To View Columns:</label><br>
-	<select id="dbtable" name="dbtable" onchange="getcolumns()" tabindex="1">
-      <option value="">--Select--</option
+	<select id="dbtable" name="dbtable" onchange="getcolumns()" tabindex="21">
+      <option value="">--Select--</option>
 <?php 
 
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
@@ -1194,11 +1191,19 @@ or die ('Cannot connect to db');
    
 ?> 
 <br><br>
+<button type="button"   onclick="rpthourly()" tabindex="18" id="rptbtn1" >Show Hourly Positions</button><br>
+<button type="button"   onclick="erhourly()" tabindex="19" id="rptbtn2" >Employee Roster-Hourly Positions</button><br>
+<button type="button"   onclick="empdep()" tabindex="20" id="rptbtn3" >Employee Dependents</button><br>
+  <br> 
+
+<form id="rptform" name="rptform" target="/" action="eisrpthub.php" method="post">
     <label for="rptsql">Enter Your SQL SELECT Statement Below:</label><br>
          <textarea style="width:60%" rows="10" name = "rptsql" id='rptsql' placeholder="" >
          </textarea>
 	<br>
-<button type="button"   onclick="submitquery()" tabindex="20" id="rptrun"  >Submit Query</button>
+<!--<button type="button"   onclick="submitquery()" tabindex="21" id="rptrun"  >Submit Query</button>-->
+
+<input type="submit" value="Submit Your Query" tabindex="21">
   <br> <br></center></form>
 </div>
 </div>
@@ -1859,8 +1864,26 @@ function submitquery() {
 	var query = document.getElementById("rptsql").value;
 	var dataString = 'sql=' + query;
 	var program = 'eisrpthub.php';
-	phpajax(dataString, program);
-	
+		$.ajax({
+		type: "POST",
+		url: program,
+		data: dataString,
+		cache: false,
+		success: function(html) {
+/*				var w = window.open('about:blank');
+					w.document.open();
+					w.document.write(data);
+					w.document.close();
+/*						myWindow = window.open("data:text/html," + encodeURIComponent(html), "_blank", "width=200,height=100");
+						myWindow.focus();
+/*					let newWindow = open('/', 'example', 'width=300,height=300')
+					newWindow.onload = function() {
+						newWindow.document.body.insertAdjacentHTML('afterbegin', html);
+					}
+*/
+					alert(html);
+				}
+	});
 }
 function phpajax(x,y) {
 	$.ajax({
@@ -1874,6 +1897,20 @@ function phpajax(x,y) {
 	});
 }
 
+function phpajaxrpt(x,y) {
+	$.ajax({
+		type: "POST",
+		url: y,
+		data: x,
+		cache: false,
+		success: function(html) {
+					let newWindow = open('/', 'example', 'width=300,height=300')
+					newWindow.onload = function() {
+					newWindow.document.body.insertAdjacentHTML('afterbegin', html);
+					}
+		}
+	});
+}
 function showdoc() {
 	var html = '<object width="100%" height="500px" data="../doc/eisqs.pdf"></object>';
     document.getElementById("phpout").innerHTML = ( html );

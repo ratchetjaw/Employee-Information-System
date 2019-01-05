@@ -1,6 +1,7 @@
 <?php
 function ramsdorfer(){
-   echo "<html><head><title>Ramsdorfer Process</title></head>";
+   echo "<html><head><title>Ramsdorfer Process</title>";
+	echo "<link rel='icon' href='../img/favicon.ico' type='image/x-icon'></head>";
 	echo "<body bgcolor=red align=center style=margin-top: 10; margin-bottom: 0><i>";
 	echo "<font face=Cambria size=5 color=black><center>";
 	echo "*********************************************<br>";
@@ -9,27 +10,14 @@ function ramsdorfer(){
 	echo "*********************************************<br>";
 	echo "*********************************************<br>\r\n\r\n\r\n\r\n";
 
-	echo "<h4>RAMSDORFER TRANSFER REQUIRES ALL FIELDS</h4><br><br><br>";
-	echo "<a href='rjeeis.php'><H6>DATABASE NOT UPDATED - RETURN TO RETRY</h6></a></center>";
-	}
-function response(){
-    echo "<html><head><title>User Authentication</title></head>\n";
-	echo "<body bgcolor=#99CCFF align=center style=margin-top: 10; margin-bottom: 0><i>";
-   echo "<font face=Cambria size=5 color=#000080><center>";
-	echo "<br><br><br>"; 
-	
-   echo  " ",$_POST['name'], " ", $POST['coverage'], " ", $POST['level'], " added to database";
-	echo "<br><br><br>"; 
-	echo "<a href='rjeeis.php'><H6>DATABASE UPDATED - RETURN TO EMPLOYEE INFORMATION SYSTEM</h6></a></center>";
-	 echo "<br><br><br>"; 
-	
- 	}
+	echo "<h4>RAMSDORFER TRANSFER REQUIRES QUERY</h4><br><br><br></center>";
+}
 
 $nameErr = $addrErr = $cszErr = $emailErr = "n";
  	
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
-	if (empty($_POST["sql"])) {
+	if (empty($_POST["rptsql"])) {
   	  $nameErr = "y";
  	 }
 }
@@ -39,9 +27,11 @@ $nameErr = $addrErr = $cszErr = $emailErr = "n";
 	        }
          else   {
 		
-		echo "<html><head><title>User Authentication</title></head>\n";
-		echo "<body bgcolor=#99CCFF align=center style=margin-top: 10; margin-bottom: 0><i>";
-        $rjeis_sql = $_POST['sql'];     
+		echo "<html><head><title>Query Result</title>";
+		
+	echo "<link rel='icon' href='../img/favicon.ico' type='image/x-icon'></head>";
+	echo "<body bgcolor=#99CCFF align=center style=margin-top: 10; margin-bottom: 0><i>";
+        $rjeis_sql = $_POST['rptsql'];     
 		$conn = new mysqli('localhost', 'rpt', 'rpt123', 'RJE');
 			
 		if ($conn->connect_errno) {
@@ -56,7 +46,8 @@ $nameErr = $addrErr = $cszErr = $emailErr = "n";
 		}
 		else {
 					
-		   echo "<html><head><title>Ramsdorfer Process</title></head>";
+		   echo "<html><head><title>Invalid Query</title>";
+		   	echo "<link rel='icon' href='../img/favicon.ico' type='image/x-icon'></head>";
 			echo "<body bgcolor=red align=center style=margin-top: 10; margin-bottom: 0><i>";
 			echo "<font face=Cambria size=5 color=black><center>";
 			echo "*********************************************<br>";
