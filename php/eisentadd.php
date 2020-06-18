@@ -44,7 +44,15 @@ function response(){
   		   "VALUES			
 		       ('$rjeis_entname')";
                
-			$conn = new mysqli('localhost', 'gus', 'gus123', 'RJE');
+
+		include 'cpfile.php';
+		include 'snfile.php';
+		include 'unfileg.php';
+		include 'pwfileg.php';
+		include 'dbfile.php';
+
+			$conn = new mysqli($servername, $username, $password, $dbname);
+
 			
 			if ($conn->connect_errno) {
 				echo "Sorry, this website is experiencing problems.";
@@ -65,6 +73,6 @@ function response(){
             $conn->close();
 		 }
 
-echo "<h6>MMXIX  ratchetjaw technologies</h6>"; 
+echo $cpfooter; 
 echo "</body></html>";?>
 	

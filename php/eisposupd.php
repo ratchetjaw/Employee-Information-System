@@ -24,6 +24,11 @@ function response(){
 	
  	}
 
+include 'cpfile.php';
+include 'snfile.php';
+include 'unfileg.php';
+include 'pwfileg.php';
+include 'dbfile.php';
 
 $nameErr = $addrErr = $cszErr = $emailErr = "n";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -59,7 +64,10 @@ $nameErr = $addrErr = $cszErr = $emailErr = "n";
             $sql = "UPDATE jobs ".
 					"SET job_title = '$pos_name', job_type = '$pos_type', rate_flag = '$pos_flag', min_salary = $pos_min, max_salary = $pos_max".
 					" WHERE job_id = $pos_id";
-			$conn = new mysqli('localhost', 'gus', 'gus123', 'RJE');
+
+			
+			$conn = new mysqli($servername, $username, $password, $dbname);
+
 			
 			if ($conn->connect_errno) {
 				echo "Sorry, this website is experiencing problems.";
@@ -79,5 +87,5 @@ $nameErr = $addrErr = $cszErr = $emailErr = "n";
 			
             $conn->close();
 		 }
-			echo "<h6>MMXIX  ratchetjaw technologies</h6>"; 
-			echo "</body></html>";?>
+echo $cpfooter;
+echo "</body></html>";?>

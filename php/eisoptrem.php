@@ -41,18 +41,22 @@ $nameErr = $addrErr = $cszErr = $emailErr = "n";
 	        }
          else   {
 		$rjeis_cntrol = $_POST['cntrol'];
-		 $dbhost = 'localhost:3036';
-            $dbuser = 'gus';
-            $dbpass = 'gus123';
-            $conn = mysql_connect($dbhost, $dbuser, $dbpass);
-            
+
+			include 'cpfile.php';
+			include 'snfile.php';
+			include 'unfileg.php';
+			include 'pwfileg.php';
+			include 'dbfile.php';
+
+				$conn = new mysqli($servername, $username, $password, $dbname);
+
             if(! $conn ) {
                die('Could not connect: ' . mysql_error());
             }
             
             $sql = "DELETE FROM options ". 
   		   " WHERE	option_type = '$rjeis_cntrol'";	
-            mysql_select_db('RJE');
+     //       mysql_select_db('RJE');
             $retval = mysql_query( $sql, $conn );
             
        if(! $retval ) {
@@ -68,7 +72,7 @@ $nameErr = $addrErr = $cszErr = $emailErr = "n";
 	        }
      
 
-echo "<h6>MMXVIII  ratchetjaw technologies</h6>"; 
+echo $cpfooter; 
 echo "</body></html>";?>
 	
 

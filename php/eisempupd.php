@@ -89,7 +89,15 @@ $nameErr = $addrErr = $cszErr = $emailErr = "n";
 				"emp_dob = '$rjeis_dob', emp_soc_sec = '$rjeis_ssno', email = '$rjeis_email', phone_number = '$rjeis_phone', marital_status = '$rjeis_mstat', ".
 				"address1 = '$rjeis_addr1', address2 = '$rjeis_addr2', res_city = '$rjeis_city', res_state = '$rjeis_state', zip_code = '$rjeis_zip' ".
 				"WHERE employee_id = $rjeis_id";
-			$conn = new mysqli('localhost', 'gus', 'gus123', 'RJE');
+
+		include 'cpfile.php';
+		include 'snfile.php';
+		include 'unfileg.php';
+		include 'pwfileg.php';
+		include 'dbfile.php';
+
+			$conn = new mysqli($servername, $username, $password, $dbname);
+
 			
 			if ($conn->connect_errno) {
 				echo "Sorry, this website is experiencing problems.";
@@ -109,5 +117,5 @@ $nameErr = $addrErr = $cszErr = $emailErr = "n";
 			
             $conn->close();
 		 }
-			echo "<h6>MMXIX  ratchetjaw technologies</h6>"; 
+			echo $cpfooter; 
 			echo "</body></html>";?>

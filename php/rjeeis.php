@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head><title>Ratchetjaw Enterprizes</title>
@@ -237,8 +238,16 @@ input[type=submit] {
 <div class="header">
 <?php 
 
-$conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
-or die ('Cannot connect to db');
+
+include 'cpfile.php';
+include 'snfile.php';
+include 'unfiler.php';
+include 'pwfiler.php';
+include 'dbfile.php';
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+  //     or die ('Cannot connect to db');
 
     $result = $conn->query("select enterprize_id, enterprize_name from enterprizes where enterprize_id = 1 ");
 
@@ -306,10 +315,10 @@ or die ('Cannot connect to db');
 	<select id="entupd" name="entupd" onchange="loadentform()" tabindex="3">
 	   <option value="">--Select--</option>
 <?php 
-
+/*
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select enterprize_id, enterprize_name from enterprizes");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -369,10 +378,10 @@ or die ('Cannot connect to db');
 	<select id="locupd" name="locupd" onchange="loadlocform()" tabindex="8">
 	   <option value="">--Select--</option>
 <?php 
-
+/*
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select loc_id, loc_name, loc_address1, loc_address2, loc_city, loc_state, loc_zip from locations");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -431,10 +440,11 @@ or die ('Cannot connect to db');
 	<select id="lid" name="lid"  onchange="loadlocid()" tabindex="2">
 	   <option value="">--Select--</option>
 
-<?php 
+<?php
+/* 
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select loc_id, loc_name, loc_id from locations");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -471,10 +481,10 @@ or die ('Cannot connect to db');
 	<select id="dptupd" name="dptupd" onchange="loaddptform()" tabindex="4">
 	   <option value="">--Select--</option>
 <?php 
-
+/*
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select department_id, department_name, loc_id from departments");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -533,10 +543,10 @@ or die ('Cannot connect to db');
 	<select id="cvgupd" name="cvgupd" tabindex='6' onchange="loadcvgform()" >
 	   <option value="">--Select--</option>
 <?php 
-
+/*
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select cvg_id, cvg_name, cvg_coverage, cvg_level, cvg_premium from coverage");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -585,9 +595,10 @@ or die ('Cannot connect to db');
     <select id="postype" name="postype" tabindex="2">
 	  <option value="">--Select--</option>
 <?php 
+/*
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select option_id, option_name from options where option_type = 'ptype'");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -622,10 +633,10 @@ or die ('Cannot connect to db');
 	   <option value="">--Select--</option>
 
 <?php 
-
+/****
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select job_id, job_title, job_type, min_salary, max_salary, rate_flag from jobs");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -699,10 +710,11 @@ or die ('Cannot connect to db');
 	 <select id="mstat" name="mstat" tabindex="9">
       <option value="">--Select--</option>
 
-<?php 
+<?php
+/* 
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select option_id, option_name from options where option_type = 'mstat'");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -747,10 +759,10 @@ or die ('Cannot connect to db');
 	   <option value="">--Select--</option>
 
 <?php 
-
+/********
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select employee_id, first_name, last_name, preferred_name, hire_date, emp_dob, emp_soc_sec, ".
 			"email, phone_number, marital_status, address1, address2, res_city, res_state, zip_code from emp_data");
 
@@ -841,9 +853,10 @@ or die ('Cannot connect to db');
 	  <option value="">--Select--</option>
 
 <?php 
+/*
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select option_id, option_name from options where option_type = 'estat'");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -867,10 +880,11 @@ or die ('Cannot connect to db');
 	 <select id="jperf" name="jperf" tabindex="3">
 	  <option value="">--Select--</optio>
 
-<?php 
+<?php
+/* 
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select option_id, option_name from options where option_type = 'jperf'");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -894,10 +908,10 @@ or die ('Cannot connect to db');
 	 <select id="jpid" name="jpid" onchange="getpositionid()" tabindex="4">
 	   <option value="">--Select--</option>
 <?php 
-
+/*
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select job_id, job_title, rate_flag, min_salary, max_salary from jobs");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -937,10 +951,10 @@ or die ('Cannot connect to db');
 	 <select id="manid" name="manid" onchange="getmanagerid()">
 	   <option value="">--Select--</option>
 <?php 
-
+/*
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select employee_id, first_name, last_name from emp_data");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -972,10 +986,10 @@ or die ('Cannot connect to db');
 	 <select id="jdptid" name="jdptid" onchange="getdepartmentid()" tabindex="6">
 	   <option value="">--Select--</option>
 <?php 
-
+/*
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select department_id, department_name from departments");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -1029,9 +1043,10 @@ or die ('Cannot connect to db');
    	 <select id="drel" name="drel" tabindex="5">
       <option value="">--Select--</option>
 <?php 
+/*
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select option_id, option_name from options where option_type = 'drel'");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -1070,10 +1085,10 @@ or die ('Cannot connect to db');
 	<select id="bencov" name="bencov" onchange="getbenefitid()" tabindex="1">
       <option value="">--Select--</option
 <?php 
-
+/*
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
+*/
     $result = $conn->query("select cvg_id, cvg_name, cvg_coverage, cvg_level, cvg_premium from coverage");
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -1167,11 +1182,11 @@ or die ('Cannot connect to db');
 	<select id="dbtable" name="dbtable" onchange="getcolumns()" tabindex="21">
       <option value="">--Select--</option>
 <?php 
-
+/*
 $conn = new mysqli('localhost', 'gus', 'gus123', 'RJE') 
 or die ('Cannot connect to db');
-
-    $result = $conn->query("select table_name from information_schema.columns where table_schema = 'RJE' GROUP BY table_name");
+*/
+    $result = $conn->query("select table_name from information_schema.columns where table_schema = 'TST' GROUP BY table_name");
 
     while ($row = mysqli_fetch_assoc($result)) {
 
@@ -1855,9 +1870,12 @@ function empdep() {
 }
 
 function getcolumns() {
-	var cntrol = $("#dbtable");
+    var dbname = "<?php echo $dbname ; ?>";
+    ///window.alert('database' + dbname);
+    var cntrol = $("#dbtable");
 	var table = cntrol.find(':selected').data('table');
-	var select = "SELECT column_name AS 'COLUMN NAME' FROM information_schema.columns WHERE table_name = '" + table + "';";
+	var select = "SELECT column_name AS 'COLUMN NAME', character_maximum_length AS 'COLUMN WIDTH' " +
+    "FROM information_schema.columns WHERE table_name = '" + table + "' AND table_schema = '" + dbname + "';";
 	document.getElementById("rptsql").value = select;
 }
 function submitquery() {
@@ -1952,9 +1970,14 @@ function closerolodex() {
 <div class="aside"><br>
     		<label id="phpout" >----</Label>
 </div>
-</div><div class="footer">
-  <p><h5>MMXVIII Ratchetjaw Technologies</h5></p>
+</div>
+<div class="footer">
+<?php 
+    echo $cpfooter;
+?>
 </div>
 
 </body>
 </html>
+
+    

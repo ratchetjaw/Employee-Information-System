@@ -66,8 +66,15 @@ $nameErr = $addrErr = $cszErr = $emailErr = "n";
 			loc_state = '$rjeis_locstate',
 			loc_zip = '$rjeis_loczip'".
   		   " WHERE loc_id = $rjeis_locid";
-			$conn = new mysqli('localhost', 'gus', 'gus123', 'RJE');
-			
+
+		include 'cpfile.php';
+		include 'snfile.php';
+		include 'unfileg.php';
+		include 'pwfileg.php';
+		include 'dbfile.php';
+
+			$conn = new mysqli($servername, $username, $password, $dbname);
+
 			if ($conn->connect_errno) {
 				echo "Sorry, this website is experiencing problems.";
 				echo "Error: Failed to make a MySQL connection, here is why: \n";
@@ -86,5 +93,5 @@ $nameErr = $addrErr = $cszErr = $emailErr = "n";
 			
             $conn->close();
 		 }
-			echo "<h6>MMXIX  ratchetjaw technologies</h6>"; 
+			echo $cpfooter; 
 			echo "</body></html>";?>
